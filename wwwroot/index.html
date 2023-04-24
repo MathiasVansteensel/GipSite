@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -49,14 +48,11 @@
     <script src="Res/vfs_fonts.js"></script>
     <script src="Res/buttons.html5.min.js"></script>
     <script src="Res/buttons.print.min.js"></script>
-    <script src="Res/Chart.min.js"></script>
     <script src="Res/jquery.barfiller.js"></script>
     <script src="Res/tagsinput.js"></script>
     <script src="Res/summernote-bs4.js"></script>
-    <script src="Res/apexcharts.js"></script>
     <script src="Res/custom.js"></script>
-    <script src="Res/bar_active_1.js"></script>
-    <script src="Res/apex_chart_list.js"></script>
+    <!--<script src="Res/bar_active_1.js"></script>-->
     <script src="Res/bootstrap.bundle.min.js"></script>
     <script src="Res/smooth-scroll.js"></script>
     <script src="Res/ytplayer.js"></script>
@@ -64,7 +60,66 @@
     <script src="Res/embla.min.js"></script>
     <script src="Res/emblaScript.js"></script>
     <script src="Res/themeScript.js"></script>
+    <script src="Res/apexcharts.js"></script>
+    <script src="Res/apex_chart_list.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="true"></script>
+
+    <script>
+
+        function AfterInit() {
+
+            //I know you're supposed to use an MVC architecture for this stuff, but who invented this mess, it's either MVVM or the most crooked thing you've ever seen
+            //I mean why have a "dynamic" web app and js interop if js cant even update dynamically without this mess... WHYYYY MICROSOFT, DUMB C*NT
+            //let apexChartScript = document.createElement("script");
+            //apexChartScript.setAttribute("src", "Res/apexcharts.js");
+
+            //let apexChartListScript = document.createElement("script");
+            //apexChartListScript.setAttribute("src", "Res/apex_chart_list.js");
+
+            //document.body.appendChild(apexChartScript);
+            //document.body.appendChild(apexChartListScript);
+
+            window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>')
+            window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>')
+            window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>')
+
+
+
+            var options = {
+                series: [{
+                    name: 'series1',
+                    data: [31, 40, 28, 51, 42, 109, 100]
+                }, {
+                    name: 'series2',
+                    data: [11, 32, 45, 32, 34, 52, 41]
+                }],
+                chart: {
+                    height: 350,
+                    type: 'area'
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                xaxis: {
+                    type: 'datetime',
+                    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                },
+                tooltip: {
+                    x: {
+                        format: 'dd/MM/yy HH:mm'
+                    },
+                },
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        }
+
+    </script>
+
 </head>
 
 <body>

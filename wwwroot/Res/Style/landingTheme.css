@@ -115,7 +115,7 @@ section .mbr-background-video-preview {
   z-index: 20;
 }
 
-/*! Base colors */
+! Base colors 
 .mbr-white {
   color: #ffffff;
 }
@@ -132,7 +132,7 @@ section .mbr-background-video-preview {
   background-color: #000000;
 }
 
-/*! Text-aligns */
+! Text-aligns 
 .align-left {
   text-align: left;
 }
@@ -145,7 +145,7 @@ section .mbr-background-video-preview {
   text-align: right;
 }
 
-/*! Font-weight  */
+! Font-weight  
 .mbr-light {
   font-weight: 300;
 }
@@ -162,7 +162,7 @@ section .mbr-background-video-preview {
   font-weight: 700;
 }
 
-/*! Media  */
+! Media  
 .media-content {
   flex-basis: 100%;
 }
@@ -258,7 +258,7 @@ iframe {
     width: 100% !important;
   }
 }
-/*! Buttons */
+! Buttons 
 .mbr-section-btn {
   margin-left: -0.6rem;
   margin-right: -0.6rem;
@@ -308,7 +308,7 @@ nav .mbr-section-btn {
   margin-right: 0rem;
 }
 
-/*! Btn icon margin */
+! Btn icon margin 
 .btn .mbr-iconfont,
 .btn.btn-sm .mbr-iconfont {
   order: 1;
@@ -338,7 +338,7 @@ nav .mbr-section-btn {
   -webkit-appearance: none;
 }
 
-/*! Full-screen */
+! Full-screen 
 .mbr-fullscreen .mbr-overlay {
   min-height: 100vh;
 }
@@ -354,7 +354,7 @@ nav .mbr-section-btn {
   padding-bottom: 3rem;
 }
 
-/*! Map */
+! Map 
 .map {
   height: 25rem;
   position: relative;
@@ -364,7 +364,7 @@ nav .mbr-section-btn {
   height: 100%;
 }
 
-/*! Scroll to top arrow */
+! Scroll to top arrow 
 .mbr-arrow-up {
   bottom: 25px;
   right: 90px;
@@ -415,7 +415,7 @@ nav .mbr-section-btn {
   transform: rotate(-90deg);
 }
 
-/*! Arrow Down */
+! Arrow Down 
 .mbr-arrow {
   position: absolute;
   bottom: 45px;
@@ -489,7 +489,7 @@ nav .mbr-section-btn {
     text-align: center;
   }
 }
-/*Gradients animation*/
+Gradients animation
 @keyframes gradient-animation {
   from {
     background-position: 0% 100%;
