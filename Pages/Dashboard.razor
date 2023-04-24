@@ -1,0 +1,580 @@
+﻿@page "/Dashboard"
+
+<PageTitle>Dashboard</PageTitle>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Pumkin Smarthome</title>
+</head>
+<body class="crm_body_bg">
+			<nav class="sidebar">
+				<div class="logo d-flex justify-content-between">
+					<a href="https://demo.dashboardpack.com/hospital-html/index.html">
+						<img src="./Res/Img/logo.png" alt="" />
+					</a>
+					<div class="sidebar_close_icon d-lg-none">
+						<i class="ti-close"></i>
+					</div>
+				</div>
+				<ul id="sidebar_menu" class="metismenu">
+					<li class="side_menu_title">
+						<span>Navigate</span>
+					</li>
+					<li class="mm-active">
+						<a href="#" aria-expanded="true">
+							<img src="Res/Icon/dashboard_layout_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>Dashboard</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="./Login.aspx" aria-expanded="false">
+							<img src="Res/Icon/male_user_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>Login Page</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="./Dummy.aspx" aria-expanded="false">
+							<img src="Res/Icon/lab_items_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>Dummy Page</span>
+						</a>
+					</li>
+					<li class="side_menu_title">
+						<span>My Pumpkin</span>
+					</li>
+					<li class="">
+						<a href="#" aria-expanded="false">
+							<img src="Res/Icon/internet_of_things_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>Devices</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="#" aria-expanded="false">
+							<img src="Res/Icon/toggle_on_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>Preferences</span>
+						</a>
+					</li>
+					<li class="side_menu_title">
+						<span>Other</span>
+					</li>
+					<li class="">
+						<a href="#" aria-expanded="false">
+							<img src="Res/Icon/settings_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>Settings</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="#" aria-expanded="false">
+							<img src="Res/Icon/placeholder_thumbnail_document_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>...</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="#" aria-expanded="false">
+							<img src="Res/Icon/placeholder_thumbnail_document_96px.png" style="max-inline-size: -webkit-fill-available;" />
+							<span>...</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<section class="main_content dashboard_part">
+				<div class="container-fluid g-0">
+					<div class="row">
+						<div class="col-lg-12 p-0">
+							<div class="header_iner d-flex justify-content-between align-items-center">
+								<div class="sidebar_icon d-lg-none">
+									<i class="ti-menu"></i>
+								</div>
+								<div class="serach_field-area">
+									<div class="search_inner">
+										<form action="#">
+											<div class="search_field">
+												<input type="text" placeholder="Search here..." />
+											</div>
+											<button type="submit">
+												<img src="./Res/Img/icon_search.svg" alt="" />
+											</button>
+										</form>
+									</div>
+								</div>
+								<div class="header_right d-flex justify-content-between align-items-center">
+									<div class="header_notification_warp d-flex align-items-center">
+										<li>
+											<a href="#">
+												<img src="./Res/Img/bell.svg" alt="" />
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<img src="./Res/Img/msg.svg" alt="" />
+											</a>
+										</li>
+									</div>
+									<div class="profile_info">
+										<img src="Res/Icon/test_account_96px.png" />
+										<div class="profile_info_iner">
+											<p>Neurologist </p>
+											<h5>Dr. Robar Smith</h5>
+											<div class="profile_info_details">
+												<a href="#">My Profile <i class="ti-user"></i>
+												</a>
+												<a href="#">Settings <i class="ti-settings"></i>
+												</a>
+												<a href="#">Log Out <i class="ti-shift-left"></i>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="main_content_iner ">
+					<div class="container-fluid p-0">
+						<div class="row justify-content-center">
+							<div class="col-lg-12">
+								<div class="single_element">
+									<div class="quick_activity">
+										<div class="row">
+											<div class="col-12">
+												<div class="quick_activity_wrap">
+													<div class="single_quick_activity d-flex">
+														<div class="icon">
+															<img src="Res/Icon/temperature_96px.png" />
+														</div>
+														<div class="count_content">
+															<h3>@temperature °C</h3>
+															<p>Temperature</p>
+														</div>
+													</div>
+													<div class="single_quick_activity d-flex">
+														<div class="icon">
+															<img src="Res/Icon/wet_96px.png" />
+														</div>
+														<div class="count_content">
+															<h3>@humidity %</h3>
+															<p>Humidity</p>
+														</div>
+													</div>
+													<div class="single_quick_activity d-flex">
+														<div class="icon">
+															<img src="Res/Icon/light_96px.png" />
+														</div>
+														<div class="count_content">
+															<h3>@light lux</h3>
+															<p>Light intensity</p>
+														</div>
+													</div>
+													<div class="single_quick_activity d-flex">
+														<div class="icon">
+															<img src="Res/Icon/solar_energy_96px.png" />
+														</div>
+														<div class="count_content">
+															<h3>
+																<span class="counter">1kW/day</span>
+															</h3>
+															<p>Energy consumption</p>
+														</div>
+													</div>
+													<div class="single_quick_activity d-flex">
+														<div class="icon">
+															<img src="Res/Icon/phi_96px.png" />
+														</div>
+														<div class="count_content">
+															<h3>
+																<span class="counter">0.95</span>
+															</h3>
+															<p>Cosφ</p>
+														</div>
+													</div>
+													<div class="single_quick_activity d-flex">
+														<div class="icon">
+															<img src="Res/Icon/Price%20Tag%20USD_96px.png" />
+														</div>
+														<div class="count_content">
+															<h3>
+																<span class="counter">€0.18/h</span>
+															</h3>
+															<p>Energy price</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-xl-12">
+								<div class="white_box mb_30 " style="position: relative;">
+									<div class="box_header border_bottom_1px  ">
+										<div class="main-title">
+											<h3 class="mb_25">Energy Comsumption</h3>
+										</div>
+									</div>
+									<div class="income_servay">
+										<div class="row">
+											<div class="col-md-3">
+												<div class="count_content">
+													<h3>$ <span class="counter">1</span>
+													</h3>
+													<p>Today's Usage</p>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="count_content">
+													<h3>$ <span class="counter">5</span>
+													</h3>
+													<p>This Week's Usage</p>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="count_content">
+													<h3>$ <span class="counter">30</span>
+													</h3>
+													<p>This Month's Usage</p>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="count_content">
+													<h3>$ <span class="counter">871</span>
+													</h3>
+													<p>This Year's Usage</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="bar_wev" style="min-height: 365px;"></div>
+									<div class="resize-triggers">
+										<div class="expand-trigger">
+											<div style="width: 1023px; height: 584px;"></div>
+										</div>
+										<div class="contract-trigger"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-7">
+								<div class="white_box QA_section card_height_100">
+									<div class="white_box_tittle list_header m-0 align-items-center">
+										<div class="main-title mb-sm-15">
+											<h3 class="m-0 nowrap">Notifications</h3>
+										</div>
+										<div class="box_right d-flex lms_block">
+											<div class="serach_field-area2">
+												<div class="search_inner">
+													<form active="#">
+														<div class="search_field">
+															<input type="text" placeholder="Search here..." />
+														</div>
+														<button type="submit">
+															<i class="ti-search"></i>
+														</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="QA_table ">
+										<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+											<table class="table lms_table_active2 dataTable no-footer dtr-inline collapsed" id="DataTables_Table_0" role="grid" style="width: 527px;">
+												<thead>
+													<tr role="row">
+														<th scope="col" class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 146px;" aria-sort="ascending" aria-label="Patients Name: activate to sort column descending">Name</th>
+														<th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 86px;" aria-label="department: activate to sort column ascending">department </th>
+														<th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 115px;" aria-label="Appointment Date: activate to sort column ascending">Property</th>
+														<th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label="Serial Number: activate to sort column ascending">Value</th>
+														<th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label="Amount: activate to sort column ascending">Amount</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="even">
+														<th scope="row" tabindex="0" class="sorting_1">
+															<div class="patient_thumb d-flex align-items-center">
+																<div class="student_list_img mr_20">
+																	<img src="Res/Icon/light_96px.png" />
+																</div>
+																<p>{Device_Name}</p>
+															</div>
+														</th>
+														<td>{Property_Name}</td>
+														<td>{Property_Value}</td>
+														<td style="display: none;">MDC65454</td>
+														<td style="display: none;">
+															<div class="amoutn_action d-flex align-items-center"> $29,192 <div class="dropdown ms-4">
+																	<a class=" dropdown-toggle hide_pils" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																		<i class="fas fa-ellipsis-v"></i>
+																	</a>
+																	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+																		<a class="dropdown-item" href="#">View</a>
+																		<a class="dropdown-item" href="#">Edit</a>
+																		<a class="dropdown-item" href="#">Delete</a>
+																	</div>
+																</div>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="odd">
+														<th scope="row" tabindex="0" class="sorting_1">
+															<div class="patient_thumb d-flex align-items-center">
+																<div class="student_list_img mr_20">
+																	<img src="Res/Icon/electrical_96px.png" />
+																</div>
+																<p>{Device_Name}</p>
+															</div>
+														</th>
+														<td>{Property_Name}</td>
+														<td>{Property_Value}</td>
+														<td style="display: none;">MDC65454</td>
+														<td style="display: none;">
+															<div class="amoutn_action d-flex align-items-center"> $29,192 <div class="dropdown ms-4">
+																	<a class=" dropdown-toggle hide_pils" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																		<i class="fas fa-ellipsis-v"></i>
+																	</a>
+																	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+																		<a class="dropdown-item" href="#">View</a>
+																		<a class="dropdown-item" href="#">Edit</a>
+																		<a class="dropdown-item" href="#">Delete</a>
+																	</div>
+																</div>
+															</div>
+														</td>
+													</tr>
+													<tr role="row" class="even">
+														<th scope="row" tabindex="0" class="sorting_1">
+															<div class="patient_thumb d-flex align-items-center">
+																<div class="student_list_img mr_20">
+																	<img src="Res/Icon/dew_point_96px.png" />
+																</div>
+																<p>{Device_Name}</p>
+															</div>
+														</th>
+														<td>{Property_Name}</td>
+														<td>{Property_Value}</td>
+														<td style="display: none;">MDC65454</td>
+														<td style="display: none;">
+															<div class="amoutn_action d-flex align-items-center"> $29,192 <div class="dropdown ms-4">
+																	<a class=" dropdown-toggle hide_pils" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																		<i class="fas fa-ellipsis-v"></i>
+																	</a>
+																	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+																		<a class="dropdown-item" href="#">View</a>
+																		<a class="dropdown-item" href="#">Edit</a>
+																		<a class="dropdown-item" href="#">Delete</a>
+																	</div>
+																</div>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-5 ">
+								<div class="white_box card_height_50 mb_30" style="position: relative;">
+									<div class="box_header border_bottom_1px  ">
+										<div class="main-title">
+											<h3 class="mb_25">Today's Energy Consumption</h3>
+										</div>
+									</div>
+									<div id="chart-7" style="min-height: 150px;"></div>
+									<div class="row text-center mt-3">
+										<div class="col-sm-6">
+											<h6 class="heading_6 d-block">Max:</h6>
+											<p class="m-0">358</p>
+										</div>
+										<div class="col-sm-6">
+											<h6 class="heading_6 d-block">Min:</h6>
+											<p class="m-0">194</p>
+										</div>
+									</div>
+									<div class="resize-triggers">
+										<div class="expand-trigger">
+											<div style="width: 413px; height: 347px;"></div>
+										</div>
+										<div class="contract-trigger"></div>
+									</div>
+								</div>
+								<div class="white_box card_height_50 mb_30" style="position: relative;">
+									<div class="box_header border_bottom_1px  ">
+										<div class="main-title">
+											<h3 class="mb_25">Today's Temperature </h3>
+										</div>
+									</div>
+
+									<!--CHART2-->
+
+									<div class="resize-triggers">
+										<div class="expand-trigger">
+											<div style="width: 413px; height: 347px;"></div>
+										</div>
+										<div class="contract-trigger"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-12">
+								<div class="white_box card_height_100">
+									<div class="box_header border_bottom_1px  ">
+										<div class="main-title">
+											<h3 class="mb_25">Devices</h3>
+										</div>
+									</div>
+									<div class="staf_list_wrapper sraf_active owl-carousel owl-loaded owl-drag">
+										<div class="owl-stage-outer">
+											<div class="owl-stage" style="transition: all 0.8s ease 0s;">
+												<div class="owl-item cloned" style="width: 218px; margin-right: 30px;">
+													<div class="single_staf">
+														<div class="staf_thumb">
+															<img src="Res/Icon/electrical_96px.png" />
+														</div>
+														<h4>Smart Outlet</h4>
+														<p>Quick actions:</p>
+													</div>
+												</div>
+												<div class="owl-item cloned" style="width: 218px; margin-right: 30px;">
+													<div class="single_staf">
+														<div class="staf_thumb">
+															<img src="Res/Icon/dew_point_96px.png" />
+														</div>
+														<h4>Sensor Station</h4>
+														<p>Quick info:</p>
+													</div>
+												</div>
+												<div class="owl-item cloned" style="width: 218px; margin-right: 30px;">
+													<div class="single_staf">
+														<div class="staf_thumb">
+															<img src="Res/Icon/light_96px.png" />
+														</div>
+														<h4>RGB Lamp</h4>
+														<p>Quick actions:</p>
+														<input type="color" id="LampColorPicker" name="LampColorPicker" value="#fdc42c" />
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="owl-nav">
+											<button type="button" role="presentation" class="owl-prev">
+												<i class="fa fa-angle-left"></i>
+											</button>
+											<button type="button" role="presentation" class="owl-next">
+												<i class="fa fa-angle-right"></i>
+											</button>
+										</div>
+										<div class="owl-dots">
+											<button role="button" class="owl-dot">
+												<span></span>
+											</button>
+											<button role="button" class="owl-dot active">
+												<span></span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="white_box card_height_100">
+									<div class="box_header border_bottom_1px  ">
+										<div class="main-title">
+											<h3 class="mb_25">Recent Activity</h3>
+										</div>
+									</div>
+									<div class="Activity_timeline">
+										<ul>
+											<li>
+												<div class="activity_bell"></div>
+												<div class="activity_wrap">
+													<h6>5 min ago</h6>
+													<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque </p>
+												</div>
+											</li>
+											<li>
+												<div class="activity_bell"></div>
+												<div class="activity_wrap">
+													<h6>5 min ago</h6>
+													<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque </p>
+												</div>
+											</li>
+											<li>
+												<div class="activity_bell"></div>
+												<div class="activity_wrap">
+													<h6>5 min ago</h6>
+													<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque </p>
+												</div>
+											</li>
+											<li>
+												<div class="activity_bell"></div>
+												<div class="activity_wrap">
+													<h6>5 min ago</h6>
+													<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque </p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="white_box mb_30">
+									<div class="box_header border_bottom_1px  ">
+										<div class="main-title">
+											<h3 class="mb_25">Weather Forecast</h3>
+										</div>
+									</div>
+									<div class="activity_progressbar">
+										<div class="single_progressbar">
+											<h6>Chance Of Rain</h6>
+											<div id="bar1" class="barfiller">
+												<div class="tipWrap" style="display: inline;">
+													<span class="tip" style="left: 395.019px; transition: left 3s ease-in-out 0s;">95%</span>
+												</div>
+												<span class="fill" data-percentage="95" style="background: rgb(8, 155, 171); width: 417.05px; transition: width 3s ease-in-out 0s;"></span>
+											</div>
+										</div>
+										<div class="single_progressbar">
+											<h6>Cloud Cover</h6>
+											<div id="bar2" class="barfiller">
+												<div class="tipWrap" style="display: inline;">
+													<span class="tip" style="left: 307.219px; transition: left 3s ease-in-out 0s;">75%</span>
+												</div>
+												<span class="fill" data-percentage="75" style="background: rgb(40, 167, 69); width: 329.25px; transition: width 3s ease-in-out 0s;"></span>
+											</div>
+										</div>
+										<div class="single_progressbar">
+											<h6>Temperature</h6>
+											<div id="bar3" class="barfiller">
+												<div class="tipWrap" style="display: inline;">
+													<span class="tip" style="left: 219.419px; transition: left 3s ease-in-out 0s;">15°C</span>
+												</div>
+												<span class="fill" data-percentage="55" style="background: rgb(255, 193, 7); width: 241.45px; transition: width 3s ease-in-out 0s;"></span>
+											</div>
+										</div>
+										<div class="single_progressbar">
+											<h6>Pollen</h6>
+											<div id="bar4" class="barfiller">
+												<div class="tipWrap" style="display: inline;">
+													<span class="tip" style="left: 87.7188px; transition: left 3s ease-in-out 0s;">25%</span>
+												</div>
+												<span class="fill" data-percentage="25" style="background: rgb(220, 53, 69); width: 109.75px; transition: width 3s ease-in-out 0s;"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer_part"></div>
+			</section>
+			<svg id="SvgjsSvg1246" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
+				<defs id="SvgjsDefs1247"></defs>
+				<polyline id="SvgjsPolyline1248" points="0,0"></polyline>
+				<path id="SvgjsPath1249" d="M-1 163.66612111292963L-1 163.66612111292963L39.11111111111111 163.66612111292963L78.22222222222221 163.66612111292963L117.33333333333333 163.66612111292963L156.44444444444443 163.66612111292963L195.55555555555554 163.66612111292963L234.66666666666666 163.66612111292963L273.77777777777777 163.66612111292963L312.88888888888886 163.66612111292963L352 163.66612111292963C352 163.66612111292963 352 163.66612111292963 352 163.66612111292963 "></path>
+			</svg>
+	</body>
+</html>
+
+@code {
+	float temperature = 20;
+	float humidity = 50;
+	float light = 100;
+}

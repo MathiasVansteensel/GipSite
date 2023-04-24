@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>GipSite</title>
+    <base href="/" />
+    <link href="Res/Style/bootstrap.min.css" rel="stylesheet" />
+    <link href="Res/Style/bootstrap1.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <!--<link href="BlazorWebAssemblyTest.styles.css" rel="stylesheet" />-->
+    <link rel="icon" href="Res/Img/logo.png" type="image/png" />
+    <link rel="stylesheet" href="Res/Style/themify-icons.css" />
+    <link rel="stylesheet" href="Res/Style/swiper.min.css" />
+    <link rel="stylesheet" href="Res/Style/select2.min.css" />
+    <link rel="stylesheet" href="Res/Style/nice-select.css" />
+    <link rel="stylesheet" href="Res/Style/owl.carousel.css" />
+    <link rel="stylesheet" href="Res/Style/gijgo.min.css" />
+    <link rel="stylesheet" href="Res/Style/all.min.css" />
+    <link rel="stylesheet" href="Res/Style/tagsinput.css" />
+    <link rel="stylesheet" href="Res/Style/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="Res/Style/responsive.dataTables.min.css" />
+    <link rel="stylesheet" href="Res/Style/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="Res/Style/summernote-bs4.css" />
+    <link rel="stylesheet" href="Res/Style/morris.css" />
+    <link rel="stylesheet" href="Res/Style/material-icons.css" />
+    <link rel="stylesheet" href="Res/Style/metisMenu.css" />
+    <link rel="stylesheet" href="Res/Style/style1.css" />
+    <link rel="stylesheet" href="Res/Style/default.css" id="colorSkinCSS" />
+    <link rel="stylesheet" href="Res/Style/apexCharts.css" />
+
+    <script src="Res/jquery1-3.4.1.min.js"></script>
+    <script src="Res/popper1.min.js"></script>
+    <script src="Res/bootstrap1.min.js"></script>
+    <script src="Res/metisMenu.js"></script>
+    <script src="Res/jquery.waypoints.min.js"></script>
+    <script src="Res/Chart.min.js"></script>
+    <script src="Res/swiper.min.js"></script>
+    <script src="Res/jquery.nice-select.min.js"></script>
+    <script src="Res/owl.carousel.min.js"></script>
+    <script src="Res/gijgo.min.js"></script>
+    <script src="Res/jquery.dataTables.min.js"></script>
+    <script src="Res/dataTables.responsive.min.js"></script>
+    <script src="Res/dataTables.buttons.min.js"></script>
+    <script src="Res/buttons.flash.min.js"></script>
+    <script src="Res/jszip.min.js"></script>
+    <script src="Res/pdfmake.min.js"></script>
+    <script src="Res/vfs_fonts.js"></script>
+    <script src="Res/buttons.html5.min.js"></script>
+    <script src="Res/buttons.print.min.js"></script>
+    <script src="Res/Chart.min.js"></script>
+    <script src="Res/jquery.barfiller.js"></script>
+    <script src="Res/tagsinput.js"></script>
+    <script src="Res/summernote-bs4.js"></script>
+    <script src="Res/apexcharts.js"></script>
+    <script src="Res/custom.js"></script>
+    <script src="Res/bar_active_1.js"></script>
+    <script src="Res/apex_chart_list.js"></script>
+    <script src="Res/bootstrap.bundle.min.js"></script>
+    <script src="Res/smooth-scroll.js"></script>
+    <script src="Res/ytplayer.js"></script>
+    <script src="Res/navbar-dropdown.js"></script>
+    <script src="Res/embla.min.js"></script>
+    <script src="Res/emblaScript.js"></script>
+    <script src="Res/themeScript.js"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="true"></script>
+</head>
+
+<body>
+    <style>
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: var(--med-color);
+        }
+
+        .loading-gif {
+            max-width: 100%;
+            height: auto;
+            border-radius: 24px;
+            z-index: 255;
+        }
+
+        .loading-gif-blur {
+            max-width: 100%;
+            height: auto;
+            transform: scale(0.438);
+            filter: blur(15px);
+            border-radius: 24px;
+            margin-bottom: 107.5px;
+            --angle: 0deg;
+            position: absolute; /* set position to absolute so it's positioned behind loading-gif */
+            z-index: 1; /* set z-index lower than loading-gif */
+            background-image: linear-gradient(var(--angle), var(--active-color), #000000);
+            animation: gif-blur-anim 3s linear infinite;
+        }
+
+        @keyframes gif-blur-anim {
+            0% {
+                --angle: 0deg;
+            }
+
+            1% {
+                --angle: 3.6deg;
+            }
+
+            2% {
+                --angle: 7.2deg;
+            }
+
+            3% {
+                --angle: 10.8deg;
+            }
+
+            4% {
+                --angle: 14.4deg;
+            }
+
+            5% {
+                --angle: 18deg;
+            }
+
+            6% {
+                --angle: 21.6deg;
+            }
+
+            7% {
+                --angle: 25.2deg;
+            }
+
+            8% {
+                --angle: 28.8deg;
+            }
+
+            9% {
+                --angle: 32.4deg;
+            }
+
+            10% {
+                --angle: 36deg;
+            }
+
+            11% {
+                --angle: 39.6deg;
+            }
+
+            12% {
+                --angle: 43.2deg;
+            }
+
+            13% {
+                --angle: 46.8deg;
+            }
+
+            14% {
+                --angle: 50.4deg;
+            }
+
+            15% {
+                --angle: 54deg;
+            }
+
+            16% {
+                --angle: 57.6deg;
+            }
+
+            17% {
+                --angle: 61.2deg;
+            }
+
+            18% {
+                --angle: 64.8deg;
+            }
+
+            19% {
+                --angle: 68.4deg;
+            }
+
+            20% {
+                --angle: 72deg;
+            }
+
+            21% {
+                --angle: 75.6deg;
+            }
+
+            22% {
+                --angle: 79.2deg;
+            }
+
+            23% {
+                --angle: 82.8deg;
+            }
+
+            24% {
+                --angle: 86.4deg;
+            }
+
+            25% {
+                --angle: 90deg;
+            }
+
+            26% {
+                --angle: 93.6deg;
+            }
+
+            27% {
+                --angle: 97.2deg;
+            }
+
+            28% {
+                --angle: 100.8deg;
+            }
+
+            29% {
+                --angle: 104.4deg;
+            }
+
+            30% {
+                --angle: 108deg;
+            }
+
+            31% {
+                --angle: 111.6deg;
+            }
+
+            32% {
+                --angle: 115.2deg;
+            }
+
+            33% {
+                --angle: 118.8deg;
+            }
+
+            34% {
+                --angle: 122.4deg;
+            }
+
+            35% {
+                --angle: 126deg;
+            }
+
+            36% {
+                --angle: 129.6deg;
+            }
+
+            37% {
+                --angle: 133.2deg;
+            }
+
+            38% {
+                --angle: 136.8deg;
+            }
+
+            39% {
+                --angle: 140.4deg;
+            }
+
+            40% {
+                --angle: 144deg;
+            }
+
+            41% {
+                --angle: 147.6deg;
+            }
+
+            42% {
+                --angle: 151.2deg;
+            }
+
+            43% {
+                --angle: 154.8deg;
+            }
+
+            44% {
+                --angle: 158.4deg;
+            }
+
+            45% {
+                --angle: 162deg;
+            }
+
+            46% {
+                --angle: 165.6deg;
+            }
+
+            47% {
+                --angle: 169.2deg;
+            }
+
+            48% {
+                --angle: 172.8deg;
+            }
+
+            49% {
+                --angle: 176.4deg;
+            }
+
+            50% {
+                --angle: 180deg;
+            }
+
+            51% {
+                --angle: 183.6deg;
+            }
+
+            52% {
+                --angle: 187.2deg;
+            }
+
+            53% {
+                --angle: 190.8deg;
+            }
+
+            54% {
+                --angle: 194.4deg;
+            }
+
+            55% {
+                --angle: 198deg;
+            }
+
+            56% {
+                --angle: 201.6deg;
+            }
+
+            57% {
+                --angle: 205.2deg;
+            }
+
+            58% {
+                --angle: 208.8deg;
+            }
+
+            59% {
+                --angle: 212.4deg;
+            }
+
+            60% {
+                --angle: 216deg;
+            }
+
+            61% {
+                --angle: 219.6deg;
+            }
+
+            62% {
+                --angle: 223.2deg;
+            }
+
+            63% {
+                --angle: 226.8deg;
+            }
+
+            64% {
+                --angle: 230.4deg;
+            }
+
+            65% {
+                --angle: 234deg;
+            }
+
+            66% {
+                --angle: 237.6deg;
+            }
+
+            67% {
+                --angle: 241.2deg;
+            }
+
+            68% {
+                --angle: 244.8deg;
+            }
+
+            69% {
+                --angle: 248.4deg;
+            }
+
+            70% {
+                --angle: 252deg;
+            }
+
+            71% {
+                --angle: 255.6deg;
+            }
+
+            72% {
+                --angle: 259.2deg;
+            }
+
+            73% {
+                --angle: 262.8deg;
+            }
+
+            74% {
+                --angle: 266.4deg;
+            }
+
+            75% {
+                --angle: 270deg;
+            }
+
+            76% {
+                --angle: 273.6deg;
+            }
+
+            77% {
+                --angle: 277.2deg;
+            }
+
+            78% {
+                --angle: 280.8deg;
+            }
+
+            79% {
+                --angle: 284.4deg;
+            }
+
+            80% {
+                --angle: 288deg;
+            }
+
+            81% {
+                --angle: 291.6deg;
+            }
+
+            82% {
+                --angle: 295.2deg;
+            }
+
+            83% {
+                --angle: 298.8deg;
+            }
+
+            84% {
+                --angle: 302.4deg;
+            }
+
+            85% {
+                --angle: 306deg;
+            }
+
+            86% {
+                --angle: 309.6deg;
+            }
+
+            87% {
+                --angle: 313.2deg;
+            }
+
+            88% {
+                --angle: 316.8deg;
+            }
+
+            89% {
+                --angle: 320.4deg;
+            }
+
+            90% {
+                --angle: 324deg;
+            }
+
+            90% {
+                --angle: 324deg;
+            }
+
+            91% {
+                --angle: 327.6deg;
+            }
+
+            92% {
+                --angle: 331.2deg;
+            }
+
+            93% {
+                --angle: 334.8deg;
+            }
+
+            94% {
+                --angle: 338.4deg;
+            }
+
+            95% {
+                --angle: 342deg;
+            }
+
+            96% {
+                --angle: 345.6deg;
+            }
+
+            97% {
+                --angle: 349.2deg;
+            }
+
+            98% {
+                --angle: 352.8deg;
+            }
+
+            99% {
+                --angle: 356.4deg;
+            }
+
+            100% {
+                --angle: 360deg;
+            }
+        }
+        /*kill me*/
+
+        .loading-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+            color: var(--text-color);
+        }
+
+        .loading-bar {
+            width: 30%;
+            height: 1%;
+            border: 1px solid var(--bg-color);
+            margin-top: 10px;
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background-color: var(--active-color);
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            animation: loading-bar .75s ease-in-out infinite;
+        }
+
+        @keyframes loading-bar {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+
+    <div id="app">
+        <div class="loading-container">
+            <img src="Res/Img/loading.gif" class="loading-gif" alt="Pumpkin Smarthome">
+            <img src="Res/Img/1024xAlpha.png" class="loading-gif-blur" />
+            <div class="loading-text">Loading...</div>
+            <div class="loading-bar">
+                <div class="loading-progress "></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

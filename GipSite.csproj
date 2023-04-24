@@ -1,0 +1,115 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<PublishIISAssets>true</PublishIISAssets>
+	<BlazorEnableCompression>true</BlazorEnableCompression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Res\DEPRICATEDjquery.barfiller.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Res\apexcharts.js" />
+    <None Include="wwwroot\Res\apex_chart_list.js" />
+    <None Include="wwwroot\Res\bar_active_1.js" />
+    <None Include="wwwroot\Res\bootstrap1.min.js" />
+    <None Include="wwwroot\Res\buttons.flash.min.js" />
+    <None Include="wwwroot\Res\buttons.html5.min.js" />
+    <None Include="wwwroot\Res\buttons.print.min.js" />
+    <None Include="wwwroot\Res\Chart.min.js" />
+    <None Include="wwwroot\Res\custom.js" />
+    <None Include="wwwroot\Res\dataTables.buttons.min.js" />
+    <None Include="wwwroot\Res\dataTables.responsive.min.js" />
+    <None Include="wwwroot\Res\DB\gip.accdb" />
+    <None Include="wwwroot\Res\gijgo.min.js" />
+    <None Include="wwwroot\Res\Icon\co2_96px.png" />
+    <None Include="wwwroot\Res\Icon\dashboard_layout_96px.png" />
+    <None Include="wwwroot\Res\Icon\dew_point_96px.png" />
+    <None Include="wwwroot\Res\Icon\electrical_96px.png" />
+    <None Include="wwwroot\Res\Icon\internet_of_things_96px.png" />
+    <None Include="wwwroot\Res\Icon\lab_items_96px.png" />
+    <None Include="wwwroot\Res\Icon\light_96px.png" />
+    <None Include="wwwroot\Res\Icon\male_user_96px.png" />
+    <None Include="wwwroot\Res\Icon\phi_96px.png" />
+    <None Include="wwwroot\Res\Icon\placeholder_thumbnail_document_96px.png" />
+    <None Include="wwwroot\Res\Icon\Price Tag USD_96px.png" />
+    <None Include="wwwroot\Res\Icon\settings_96px.png" />
+    <None Include="wwwroot\Res\Icon\solar_energy_96px.png" />
+    <None Include="wwwroot\Res\Icon\temperature_96px.png" />
+    <None Include="wwwroot\Res\Icon\test_account_96px.png" />
+    <None Include="wwwroot\Res\Icon\toggle_on_96px.png" />
+    <None Include="wwwroot\Res\Icon\wet_96px.png" />
+    <None Include="wwwroot\Res\Img\1.png" />
+    <None Include="wwwroot\Res\Img\1.svg" />
+    <None Include="wwwroot\Res\Img\2%281%29.png" />
+    <None Include="wwwroot\Res\Img\2.png" />
+    <None Include="wwwroot\Res\Img\2.svg" />
+    <None Include="wwwroot\Res\Img\3%281%29.png" />
+    <None Include="wwwroot\Res\Img\3.png" />
+    <None Include="wwwroot\Res\Img\3.svg" />
+    <None Include="wwwroot\Res\Img\4%281%29.png" />
+    <None Include="wwwroot\Res\Img\4.png" />
+    <None Include="wwwroot\Res\Img\4.svg" />
+    <None Include="wwwroot\Res\Img\5%281%29.png" />
+    <None Include="wwwroot\Res\Img\5.png" />
+    <None Include="wwwroot\Res\Img\5.svg" />
+    <None Include="wwwroot\Res\Img\6.png" />
+    <None Include="wwwroot\Res\Img\6.svg" />
+    <None Include="wwwroot\Res\Img\7.svg" />
+    <None Include="wwwroot\Res\Img\bell.svg" />
+    <None Include="wwwroot\Res\Img\Bshot1_3.png" />
+    <None Include="wwwroot\Res\Img\cap.svg" />
+    <None Include="wwwroot\Res\Img\client_img.png" />
+    <None Include="wwwroot\Res\Img\icon_search.svg" />
+    <None Include="wwwroot\Res\Img\llllll.png" />
+    <None Include="wwwroot\Res\Img\logo.png" />
+    <None Include="wwwroot\Res\Img\man.svg" />
+    <None Include="wwwroot\Res\Img\msg.svg" />
+    <None Include="wwwroot\Res\Img\pataint.png" />
+    <None Include="wwwroot\Res\Img\pharma.svg" />
+    <None Include="wwwroot\Res\Img\wheel.svg" />
+    <None Include="wwwroot\Res\jquery.counterup.min.js" />
+    <None Include="wwwroot\Res\jquery.dataTables.min.js" />
+    <None Include="wwwroot\Res\jquery.nice-select.min.js" />
+    <None Include="wwwroot\Res\jquery.waypoints.min.js" />
+    <None Include="wwwroot\Res\jquery1-3.4.1.min.js" />
+    <None Include="wwwroot\Res\jszip.min.js" />
+    <None Include="wwwroot\Res\metisMenu.js" />
+    <None Include="wwwroot\Res\owl.carousel.min.js" />
+    <None Include="wwwroot\Res\pdfmake.min.js" />
+    <None Include="wwwroot\Res\popper1.min.js" />
+    <None Include="wwwroot\Res\Style\all.min.css" />
+    <None Include="wwwroot\Res\Style\apexCharts.css" />
+    <None Include="wwwroot\Res\Style\bootstrap1.min.css" />
+    <None Include="wwwroot\Res\Style\buttons.dataTables.min.css" />
+    <None Include="wwwroot\Res\Style\default.css" />
+    <None Include="wwwroot\Res\Style\gijgo.min.css" />
+    <None Include="wwwroot\Res\Style\jquery.dataTables.min.css" />
+    <None Include="wwwroot\Res\Style\material-icons.css" />
+    <None Include="wwwroot\Res\Style\metisMenu.css" />
+    <None Include="wwwroot\Res\Style\morris.css" />
+    <None Include="wwwroot\Res\Style\nice-select.css" />
+    <None Include="wwwroot\Res\Style\owl.carousel.css" />
+    <None Include="wwwroot\Res\Style\responsive.dataTables.min.css" />
+    <None Include="wwwroot\Res\Style\select2.min.css" />
+    <None Include="wwwroot\Res\Style\style1.css" />
+    <None Include="wwwroot\Res\Style\summernote-bs4.css" />
+    <None Include="wwwroot\Res\Style\swiper.min.css" />
+    <None Include="wwwroot\Res\Style\tagsinput.css" />
+    <None Include="wwwroot\Res\Style\themify-icons.css" />
+    <None Include="wwwroot\Res\summernote-bs4.js" />
+    <None Include="wwwroot\Res\swiper.min.js" />
+    <None Include="wwwroot\Res\tagsinput.js" />
+    <None Include="wwwroot\Res\vfs_fonts.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.5" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
