@@ -650,10 +650,19 @@
     overflow: hidden !important;
 }
 
+<<<<<<< Updated upstream
 .resize-triggers > div {
     background: #eee !important;
     overflow: auto !important;
 }
+=======
+    .resize-triggers > div {
+        height: 100%;
+        width: 100%;
+        background: #eee;
+        overflow: auto
+    }
+>>>>>>> Stashed changes
 
 .contract-trigger:before {
     width: 200% !important;

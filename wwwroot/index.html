@@ -65,6 +65,27 @@
     <script src="Res/emblaScript.js"></script>
     <script src="Res/themeScript.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="true"></script>
+<<<<<<< Updated upstream
+=======
+
+    <script>
+
+        function RenderChart(options) {
+
+            //I know you're supposed to use an MVC architecture for this stuff, but who invented this mess, it's either MVVM or the most crooked thing you've ever seen
+            //I mean why have a "dynamic" web app and js interop if js cant even update dynamically without this mess... WHYYYY MICROSOFT, DUMB C*NT
+
+            window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>')
+            window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>')
+            window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>')
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        }
+
+    </script>
+
+>>>>>>> Stashed changes
 </head>
 
 <body>

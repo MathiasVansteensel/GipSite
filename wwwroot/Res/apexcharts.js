@@ -11927,6 +11927,7 @@
             function t(i) {
                 e(this, t), this.ctx = i, this.w = i.w, this.timeScaleArray = [], this.utc = this.w.config.xaxis.labels.datetimeUTC
             }
+<<<<<<< Updated upstream
             return a(t, [{
                 key: "calculateTimeScaleTicks",
                 value: function(t, e) {
@@ -11968,6 +11969,381 @@
                             numberOfDays: u,
                             numberOfMonths: f,
                             numberOfYears: p
+=======
+        }, {
+            key: "handleNullDataPoints",
+            value: function handleNullDataPoints(series, pointsPos, i, j, realIndex) {
+                var w = this.w;
+
+                if (series[i][j] === null && w.config.markers.showNullDataPoints || series[i].length === 1) {
+                    // fixes apexcharts.js#1282, #1252
+                    var elPointsWrap = this.markers.plotChartMarkers(pointsPos, realIndex, j + 1, this.strokeWidth - w.config.markers.strokeWidth / 2, true);
+
+                    if (elPointsWrap !== null) {
+                        this.elPointsMain.add(elPointsWrap);
+                    }
+                }
+            }
+        }]);
+
+        return Line;
+    }();
+
+    /*
+     * treemap-squarify.js - open source implementation of squarified treemaps
+     *
+     * Treemap Squared 0.5 - Treemap Charting library
+     *
+     * https://github.com/imranghory/treemap-squared/
+     *
+     * Copyright (c) 2012 Imran Ghory (imranghory@gmail.com)
+     * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
+     *
+     *
+     * Implementation of the squarify treemap algorithm described in:
+     *
+     * Bruls, Mark; Huizing, Kees; van Wijk, Jarke J. (2000), "Squarified treemaps"
+     * in de Leeuw, W.; van Liere, R., Data Visualization 2000:
+     * Proc. Joint Eurographics and IEEE TCVG Symp. on Visualization, Springer-Verlag, pp. 33�42.
+     *
+     * Paper is available online at: http://www.win.tue.nl/~vanwijk/stm.pdf
+     *
+     * The code in this file is completeley decoupled from the drawing code so it should be trivial
+     * to port it to any other vector drawing library. Given an array of datapoints this library returns
+     * an array of cartesian coordinates that represent the rectangles that make up the treemap.
+     *
+     * The library also supports multidimensional data (nested treemaps) and performs normalization on the data.
+     *
+     * See the README file for more details.
+     */
+    window.TreemapSquared = {};
+
+    (function () {
+
+        window.TreemapSquared.generate = function () {
+            function Container(xoffset, yoffset, width, height) {
+                this.xoffset = xoffset; // offset from the the top left hand corner
+
+                this.yoffset = yoffset; // ditto
+
+                this.height = height;
+                this.width = width;
+
+                this.shortestEdge = function () {
+                    return Math.min(this.height, this.width);
+                }; // getCoordinates - for a row of boxes which we've placed
+                //                  return an array of their cartesian coordinates
+
+
+                this.getCoordinates = function (row) {
+                    var coordinates = [];
+                    var subxoffset = this.xoffset,
+                        subyoffset = this.yoffset; //our offset within the container
+
+                    var areawidth = sumArray(row) / this.height;
+                    var areaheight = sumArray(row) / this.width;
+                    var i;
+
+                    if (this.width >= this.height) {
+                        for (i = 0; i < row.length; i++) {
+                            coordinates.push([subxoffset, subyoffset, subxoffset + areawidth, subyoffset + row[i] / areawidth]);
+                            subyoffset = subyoffset + row[i] / areawidth;
+                        }
+                    } else {
+                        for (i = 0; i < row.length; i++) {
+                            coordinates.push([subxoffset, subyoffset, subxoffset + row[i] / areaheight, subyoffset + areaheight]);
+                            subxoffset = subxoffset + row[i] / areaheight;
+                        }
+                    }
+
+                    return coordinates;
+                }; // cutArea - once we've placed some boxes into an row we then need to identify the remaining area,
+                //           this function takes the area of the boxes we've placed and calculates the location and
+                //           dimensions of the remaining space and returns a container box defined by the remaining area
+
+
+                this.cutArea = function (area) {
+                    var newcontainer;
+
+                    if (this.width >= this.height) {
+                        var areawidth = area / this.height;
+                        var newwidth = this.width - areawidth;
+                        newcontainer = new Container(this.xoffset + areawidth, this.yoffset, newwidth, this.height);
+                    } else {
+                        var areaheight = area / this.width;
+                        var newheight = this.height - areaheight;
+                        newcontainer = new Container(this.xoffset, this.yoffset + areaheight, this.width, newheight);
+                    }
+
+                    return newcontainer;
+                };
+            } // normalize - the Bruls algorithm assumes we're passing in areas that nicely fit into our
+            //             container box, this method takes our raw data and normalizes the data values into
+            //             area values so that this assumption is valid.
+
+
+            function normalize(data, area) {
+                var normalizeddata = [];
+                var sum = sumArray(data);
+                var multiplier = area / sum;
+                var i;
+
+                for (i = 0; i < data.length; i++) {
+                    normalizeddata[i] = data[i] * multiplier;
+                }
+
+                return normalizeddata;
+            } // treemapMultidimensional - takes multidimensional data (aka [[23,11],[11,32]] - nested array)
+            //                           and recursively calls itself using treemapSingledimensional
+            //                           to create a patchwork of treemaps and merge them
+
+
+            function treemapMultidimensional(data, width, height, xoffset, yoffset) {
+                xoffset = typeof xoffset === 'undefined' ? 0 : xoffset;
+                yoffset = typeof yoffset === 'undefined' ? 0 : yoffset;
+                var mergeddata = [];
+                var mergedtreemap;
+                var results = [];
+                var i;
+
+                if (isArray(data[0])) {
+                    // if we've got more dimensions of depth
+                    for (i = 0; i < data.length; i++) {
+                        mergeddata[i] = sumMultidimensionalArray(data[i]);
+                    }
+
+                    mergedtreemap = treemapSingledimensional(mergeddata, width, height, xoffset, yoffset);
+
+                    for (i = 0; i < data.length; i++) {
+                        results.push(treemapMultidimensional(data[i], mergedtreemap[i][2] - mergedtreemap[i][0], mergedtreemap[i][3] - mergedtreemap[i][1], mergedtreemap[i][0], mergedtreemap[i][1]));
+                    }
+                } else {
+                    results = treemapSingledimensional(data, width, height, xoffset, yoffset);
+                }
+
+                return results;
+            } // treemapSingledimensional - simple wrapper around squarify
+
+
+            function treemapSingledimensional(data, width, height, xoffset, yoffset) {
+                xoffset = typeof xoffset === 'undefined' ? 0 : xoffset;
+                yoffset = typeof yoffset === 'undefined' ? 0 : yoffset;
+                var rawtreemap = squarify(normalize(data, width * height), [], new Container(xoffset, yoffset, width, height), []);
+                return flattenTreemap(rawtreemap);
+            } // flattenTreemap - squarify implementation returns an array of arrays of coordinates
+            //                  because we have a new array everytime we switch to building a new row
+            //                  this converts it into an array of coordinates.
+
+
+            function flattenTreemap(rawtreemap) {
+                var flattreemap = [];
+                var i, j;
+
+                for (i = 0; i < rawtreemap.length; i++) {
+                    for (j = 0; j < rawtreemap[i].length; j++) {
+                        flattreemap.push(rawtreemap[i][j]);
+                    }
+                }
+
+                return flattreemap;
+            } // squarify  - as per the Bruls paper
+            //             plus coordinates stack and containers so we get
+            //             usable data out of it
+
+
+            function squarify(data, currentrow, container, stack) {
+                var length;
+                var nextdatapoint;
+                var newcontainer;
+
+                if (data.length === 0) {
+                    stack.push(container.getCoordinates(currentrow));
+                    return;
+                }
+
+                length = container.shortestEdge();
+                nextdatapoint = data[0];
+
+                if (improvesRatio(currentrow, nextdatapoint, length)) {
+                    currentrow.push(nextdatapoint);
+                    squarify(data.slice(1), currentrow, container, stack);
+                } else {
+                    newcontainer = container.cutArea(sumArray(currentrow), stack);
+                    stack.push(container.getCoordinates(currentrow));
+                    squarify(data, [], newcontainer, stack);
+                }
+
+                return stack;
+            } // improveRatio - implements the worse calculation and comparision as given in Bruls
+            //                (note the error in the original paper; fixed here)
+
+
+            function improvesRatio(currentrow, nextnode, length) {
+                var newrow;
+
+                if (currentrow.length === 0) {
+                    return true;
+                }
+
+                newrow = currentrow.slice();
+                newrow.push(nextnode);
+                var currentratio = calculateRatio(currentrow, length);
+                var newratio = calculateRatio(newrow, length); // the pseudocode in the Bruls paper has the direction of the comparison
+                // wrong, this is the correct one.
+
+                return currentratio >= newratio;
+            } // calculateRatio - calculates the maximum width to height ratio of the
+            //                  boxes in this row
+
+
+            function calculateRatio(row, length) {
+                var min = Math.min.apply(Math, row);
+                var max = Math.max.apply(Math, row);
+                var sum = sumArray(row);
+                return Math.max(Math.pow(length, 2) * max / Math.pow(sum, 2), Math.pow(sum, 2) / (Math.pow(length, 2) * min));
+            } // isArray - checks if arr is an array
+
+
+            function isArray(arr) {
+                return arr && arr.constructor === Array;
+            } // sumArray - sums a single dimensional array
+
+
+            function sumArray(arr) {
+                var sum = 0;
+                var i;
+
+                for (i = 0; i < arr.length; i++) {
+                    sum += arr[i];
+                }
+
+                return sum;
+            } // sumMultidimensionalArray - sums the values in a nested array (aka [[0,1],[[2,3]]])
+
+
+            function sumMultidimensionalArray(arr) {
+                var i,
+                    total = 0;
+
+                if (isArray(arr[0])) {
+                    for (i = 0; i < arr.length; i++) {
+                        total += sumMultidimensionalArray(arr[i]);
+                    }
+                } else {
+                    total = sumArray(arr);
+                }
+
+                return total;
+            }
+
+            return treemapMultidimensional;
+        }();
+    })();
+
+    /**
+     * ApexCharts TreemapChart Class.
+     * @module TreemapChart
+     **/
+
+    var TreemapChart = /*#__PURE__*/function () {
+        function TreemapChart(ctx, xyRatios) {
+            _classCallCheck(this, TreemapChart);
+
+            this.ctx = ctx;
+            this.w = ctx.w;
+            this.strokeWidth = this.w.config.stroke.width;
+            this.helpers = new TreemapHelpers(ctx);
+            this.dynamicAnim = this.w.config.chart.animations.dynamicAnimation;
+            this.labels = [];
+        }
+
+        _createClass(TreemapChart, [{
+            key: "draw",
+            value: function draw(series) {
+                var _this = this;
+
+                var w = this.w;
+                var graphics = new Graphics(this.ctx);
+                var fill = new Fill(this.ctx);
+                var ret = graphics.group({
+                    class: 'apexcharts-treemap'
+                });
+                if (w.globals.noData) return ret;
+                var ser = [];
+                series.forEach(function (s) {
+                    var d = s.map(function (v) {
+                        return Math.abs(v);
+                    });
+                    ser.push(d);
+                });
+                this.negRange = this.helpers.checkColorRange();
+                w.config.series.forEach(function (s, i) {
+                    s.data.forEach(function (l) {
+                        if (!Array.isArray(_this.labels[i])) _this.labels[i] = [];
+
+                        _this.labels[i].push(l.x);
+                    });
+                });
+                var nodes = window.TreemapSquared.generate(ser, w.globals.gridWidth, w.globals.gridHeight);
+                nodes.forEach(function (node, i) {
+                    var elSeries = graphics.group({
+                        class: "apexcharts-series apexcharts-treemap-series",
+                        seriesName: Utils$1.escapeString(w.globals.seriesNames[i]),
+                        rel: i + 1,
+                        'data:realIndex': i
+                    });
+
+                    if (w.config.chart.dropShadow.enabled) {
+                        var shadow = w.config.chart.dropShadow;
+                        var filters = new Filters(_this.ctx);
+                        filters.dropShadow(ret, shadow, i);
+                    }
+
+                    var elDataLabelWrap = graphics.group({
+                        class: 'apexcharts-data-labels'
+                    });
+                    node.forEach(function (r, j) {
+                        var x1 = r[0];
+                        var y1 = r[1];
+                        var x2 = r[2];
+                        var y2 = r[3];
+                        var elRect = graphics.drawRect(x1, y1, x2 - x1, y2 - y1, 0, '#fff', 1, _this.strokeWidth, w.config.plotOptions.treemap.useFillColorAsStroke ? color : w.globals.stroke.colors[i]);
+                        elRect.attr({
+                            cx: x1,
+                            cy: y1,
+                            index: i,
+                            i: i,
+                            j: j,
+                            width: x2 - x1,
+                            height: y2 - y1
+                        });
+
+                        var colorProps = _this.helpers.getShadeColor(w.config.chart.type, i, j, _this.negRange);
+
+                        var color = colorProps.color;
+
+                        if (typeof w.config.series[i].data[j] !== 'undefined' && w.config.series[i].data[j].fillColor) {
+                            color = w.config.series[i].data[j].fillColor;
+                        }
+
+                        var pathFill = fill.fillPath({
+                            color: color,
+                            seriesNumber: i,
+                            dataPointIndex: j
+                        });
+                        elRect.node.classList.add('apexcharts-treemap-rect');
+                        elRect.attr({
+                            fill: pathFill
+                        });
+
+                        _this.helpers.addListeners(elRect);
+
+                        var fromRect = {
+                            x: x1 + (x2 - x1) / 2,
+                            y: y1 + (y2 - y1) / 2,
+                            width: 0,
+                            height: 0
+>>>>>>> Stashed changes
                         };
                     switch (this.tickInterval) {
                         case "years":
@@ -14045,6 +14421,7 @@
                                 this.dom.newLined && (e.textPath() || this.attr("x", e.attr("x")), "\n" == this.text() ? i += s : (this.attr("dy", s + i), i = 0))
                             })), this.fire("rebuild")
                         }
+<<<<<<< Updated upstream
                         return this
                     },
                     build: function(t) {
@@ -14052,6 +14429,214 @@
                     },
                     setData: function(t) {
                         return this.dom = t, this.dom.leading = new a.Number(t.leading || 1.3), this
+=======
+
+                        return _text;
+                    } // remove existing content
+
+
+                    this.clear().build(true);
+
+                    if (typeof _text === 'function') {
+                        // call block
+                        _text.call(this, this);
+                    } else {
+                        // store text and make sure text is not blank
+                        _text = _text.split('\n'); // build new lines
+
+                        for (var i = 0, il = _text.length; i < il; i++) {
+                            this.tspan(_text[i]).newLine();
+                        }
+                    } // disable build mode and rebuild lines
+
+
+                    return this.build(false).rebuild();
+                },
+                // Set font size
+                size: function size(_size) {
+                    return this.attr('font-size', _size).rebuild();
+                },
+                // Set / get leading
+                leading: function leading(value) {
+                    // act as getter
+                    if (value == null) {
+                        return this.dom.leading;
+                    } // act as setter
+
+
+                    this.dom.leading = new SVG.Number(value);
+                    return this.rebuild();
+                },
+                // Get all the first level lines
+                lines: function lines() {
+                    var node = (this.textPath && this.textPath() || this).node; // filter tspans and map them to SVG.js instances
+
+                    var lines = SVG.utils.map(SVG.utils.filterSVGElements(node.childNodes), function (el) {
+                        return SVG.adopt(el);
+                    }); // return an instance of SVG.set
+
+                    return new SVG.Set(lines);
+                },
+                // Rebuild appearance type
+                rebuild: function rebuild(_rebuild) {
+                    // store new rebuild flag if given
+                    if (typeof _rebuild === 'boolean') {
+                        this._rebuild = _rebuild;
+                    } // define position of all lines
+
+
+                    if (this._rebuild) {
+                        var self = this,
+                            blankLineOffset = 0,
+                            dy = this.dom.leading * new SVG.Number(this.attr('font-size'));
+                        this.lines().each(function () {
+                            if (this.dom.newLined) {
+                                if (!self.textPath()) {
+                                    this.attr('x', self.attr('x'));
+                                }
+
+                                if (this.text() == '\n') {
+                                    blankLineOffset += dy;
+                                } else {
+                                    this.attr('dy', dy + blankLineOffset);
+                                    blankLineOffset = 0;
+                                }
+                            }
+                        });
+                        this.fire('rebuild');
+                    }
+
+                    return this;
+                },
+                // Enable / disable build mode
+                build: function build(_build) {
+                    this._build = !!_build;
+                    return this;
+                },
+                // overwrite method from parent to set data properly
+                setData: function setData(o) {
+                    this.dom = o;
+                    this.dom.leading = new SVG.Number(o.leading || 1.3);
+                    return this;
+                }
+            },
+            // Add parent method
+            construct: {
+                // Create text element
+                text: function text(_text2) {
+                    return this.put(new SVG.Text()).text(_text2);
+                },
+                // Create plain text element
+                plain: function plain(text) {
+                    return this.put(new SVG.Text()).plain(text);
+                }
+            }
+        });
+        SVG.Tspan = SVG.invent({
+            // Initialize node
+            create: 'tspan',
+            // Inherit from
+            inherit: SVG.Shape,
+            // Add class methods
+            extend: {
+                // Set text content
+                text: function text(_text3) {
+                    if (_text3 == null) return this.node.textContent + (this.dom.newLined ? '\n' : '');
+                    typeof _text3 === 'function' ? _text3.call(this, this) : this.plain(_text3);
+                    return this;
+                },
+                // Shortcut dx
+                dx: function dx(_dx) {
+                    return this.attr('dx', _dx);
+                },
+                // Shortcut dy
+                dy: function dy(_dy) {
+                    return this.attr('dy', _dy);
+                },
+                // Create new line
+                newLine: function newLine() {
+                    // fetch text parent
+                    var t = this.parent(SVG.Text); // mark new line
+
+                    this.dom.newLined = true; // apply new hy�n
+
+                    return this.dy(t.dom.leading * t.attr('font-size')).attr('x', t.x());
+                }
+            }
+        });
+        SVG.extend(SVG.Text, SVG.Tspan, {
+            // Create plain text node
+            plain: function plain(text) {
+                // clear if build mode is disabled
+                if (this._build === false) {
+                    this.clear();
+                } // create text node
+
+
+                this.node.appendChild(document.createTextNode(text));
+                return this;
+            },
+            // Create a tspan
+            tspan: function tspan(text) {
+                var node = (this.textPath && this.textPath() || this).node,
+                    tspan = new SVG.Tspan(); // clear if build mode is disabled
+
+                if (this._build === false) {
+                    this.clear();
+                } // add new tspan
+
+
+                node.appendChild(tspan.node);
+                return tspan.text(text);
+            },
+            // Clear all lines
+            clear: function clear() {
+                var node = (this.textPath && this.textPath() || this).node; // remove existing child nodes
+
+                while (node.hasChildNodes()) {
+                    node.removeChild(node.lastChild);
+                }
+
+                return this;
+            },
+            // Get length of text element
+            length: function length() {
+                return this.node.getComputedTextLength();
+            }
+        });
+        SVG.TextPath = SVG.invent({
+            // Initialize node
+            create: 'textPath',
+            // Inherit from
+            inherit: SVG.Parent,
+            // Define parent class
+            parent: SVG.Text,
+            // Add parent method
+            construct: {
+                morphArray: SVG.PathArray,
+                // return the array of the path track element
+                array: function array() {
+                    var track = this.track();
+                    return track ? track.array() : null;
+                },
+                // Plot path if any
+                plot: function plot(d) {
+                    var track = this.track(),
+                        pathArray = null;
+
+                    if (track) {
+                        pathArray = track.plot(d);
+                    }
+
+                    return d == null ? pathArray : this;
+                },
+                // Get the path track element
+                track: function track() {
+                    var path = this.textPath();
+
+                    if (path) {
+                        return path.reference('href');
+>>>>>>> Stashed changes
                     }
                 },
                 construct: {

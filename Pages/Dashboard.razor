@@ -244,13 +244,106 @@
 											</div>
 										</div>
 									</div>
-									<div id="bar_wev" style="min-height: 365px;"></div>
-									<div class="resize-triggers">
-										<div class="expand-trigger">
-											<div style="width: 1023px; height: 584px;"></div>
-										</div>
-										<div class="contract-trigger"></div>
-									</div>
+									<button @onclick="RenderChart">Render chart</button>
+								<div id="chart" style="min-height: 365px;">
+									@code
+									{
+										//TODO: onload => render chart in index.html
+										Dictionary<string, object> options = new Dictionary<string, object>
+										{
+											{
+												"series",
+												new List<Dictionary<string, object>>
+												{
+													new Dictionary<string, object>
+													{
+														{ "name", "series1" },
+														{ "data", new List<int> { 23, 49, 36, 71, 53, 84, 97 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series2" },
+														{ "data", new List<int> { 56, 42, 28, 39, 67, 91, 108 } }	
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series3" },
+														{ "data", new List<int> { 89, 71, 63, 45, 28, 32, 49 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series4" },
+														{ "data", new List<int> { 39, 42, 52, 61, 73, 85, 96 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series5" },
+														{ "data", new List<int> { 29, 54, 66, 78, 91, 102, 115 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series6" },
+														{ "data", new List<int> { 47, 52, 68, 79, 83, 94, 102 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series7" },
+														{ "data", new List<int> { 72, 65, 49, 36, 28, 19, 11 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series8" },
+														{ "data", new List<int> { 35, 44, 59, 73, 82, 94, 101 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series9" },
+														{ "data", new List<int> { 43, 53, 64, 76, 85, 98, 111 } }
+													},
+													new Dictionary<string, object>
+													{
+														{ "name", "series10" },
+														{ "data", new List<int> { 51, 43, 28, 19, 13, 9, 5 } }
+													}
+
+												}
+											},
+											{ "chart", new Dictionary<string, object> { { "height", 350 }, { "type", "area" } } },
+											{ "dataLabels", new Dictionary<string, object> { { "enabled", false } } },
+											{ "stroke", new Dictionary<string, object> { { "curve", "smooth" } } },
+											{
+												"xaxis",
+												new Dictionary<string, object>
+												{
+													{ "type", "datetime" },
+													{
+														"categories",
+														new List<string>
+														{
+															"2018-09-19T00:00:00.000Z",
+															"2018-09-19T01:30:00.000Z",
+															"2018-09-19T02:30:00.000Z",
+															"2018-09-19T03:30:00.000Z",
+															"2018-09-19T04:30:00.000Z",
+															"2018-09-19T05:30:00.000Z",
+															"2018-09-19T06:30:00.000Z"
+														}
+													}
+												}
+											},
+											{
+												"tooltip",
+												new Dictionary<string, object>
+												{
+													{ "x", new Dictionary<string, object> { { "format", "dd/MM/yy HH:mm" } } }
+												}
+											}
+										};
+										
+
+										private async Task RenderChart() => await JS.InvokeVoidAsync("RenderChart", options);
+									}
+								</div>
 								</div>
 							</div>
 							<div class="col-xl-7">
