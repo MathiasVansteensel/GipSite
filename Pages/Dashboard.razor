@@ -1,4 +1,5 @@
 ﻿@page "/Dashboard"
+@inject IJSRuntime JS;
 
 <PageTitle>Dashboard</PageTitle>
 
@@ -10,8 +11,8 @@
 <body class="crm_body_bg">
 			<nav class="sidebar">
 				<div class="logo d-flex justify-content-between">
-					<a href="https://demo.dashboardpack.com/hospital-html/index.html">
-						<img src="./Res/Img/logo.png" alt="" />
+					<a href="pumpkinapp.be/dashboard">
+						<img src="/Res/Img/logo.png" alt="" />
 					</a>
 					<div class="sidebar_close_icon d-lg-none">
 						<i class="ti-close"></i>
@@ -247,9 +248,9 @@
 									<button @onclick="RenderChart">Render chart</button>
 								<div id="chart" style="min-height: 365px;">
 									@code
-									{
-										//TODO: onload => render chart in index.html
-										Dictionary<string, object> options = new Dictionary<string, object>
+								{
+									//TODO: onload => render chart in index.html
+									@*Dictionary<string, object> options = new Dictionary<string, object>
 										{
 											{
 												"series",
@@ -338,8 +339,15 @@
 													{ "x", new Dictionary<string, object> { { "format", "dd/MM/yy HH:mm" } } }
 												}
 											}
-										};
-										
+										};*@
+
+									ApexChart options = new("test",
+									new double[] { 1d,2d,3d,4d,5d,6d,7d,8d,9d },
+									ApexChart.ChartType.Area,
+									false,
+									ApexChart.StrokeCurveType.Smooth,
+									new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+
 
 										private async Task RenderChart() => await JS.InvokeVoidAsync("RenderChart", options);
 									}
