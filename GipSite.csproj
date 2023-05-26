@@ -9,10 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Apexchart.old.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\Res\DEPRICATEDjquery.barfiller.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="ApexCharts\Apexchart.old.cs" />
     <None Include="wwwroot\Res\apex_chart_list.js" />
     <None Include="wwwroot\Res\bootstrap1.min.js" />
     <None Include="wwwroot\Res\buttons.flash.min.js" />

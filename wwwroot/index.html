@@ -66,8 +66,9 @@
     <script src="_framework/blazor.webassembly.js" autostart="true"></script>
 
     <script>
+        var MainChart;
 
-        function RenderChart(options) {
+        function RenderChart(options, targetElement) {
 
             //I know you're supposed to use an MVC architecture for this stuff, but who invented this mess, it's either MVVM or the most crooked thing you've ever seen
             //I mean why have a "dynamic" web app and js interop if js cant even update dynamically without this mess... WHYYYY MICROSOFT, DUMB C*NT
@@ -76,8 +77,20 @@
             window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>')
             window.Promise || document.write('<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>')
 
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+            MainChart = new ApexCharts(document.querySelector(targetElement), options);
+            MainChart.render();
+        }
+
+        function UpdateOptions(options) {
+            MainChart.updateOptions(options, false, true, false);
+        }
+
+        function UpdateSeries(series) {
+            MainChart.updateSeries(series, true);
+        }
+
+        function ScrollToDataPoint(index) {
+            chart.scrollToDataPoint(index);
         }
 
     </script>
@@ -109,10 +122,10 @@
             border-radius: 24px;
             margin-bottom: 107.5px;
             --angle: 0deg;
-            position: absolute; /* set position to absolute so it's positioned behind loading-gif */
-            z-index: 1; /* set z-index lower than loading-gif */
+            position: absolute;
+            z-index: 1;
             background-image: linear-gradient(var(--angle), var(--active-color), #000000);
-            animation: gif-blur-anim 3s linear infinite;
+            animation: gif-blur-anim 2s ease-in-out infinite;
         }
 
         @keyframes gif-blur-anim {
@@ -549,9 +562,11 @@
             background-color: var(--active-color);
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            animation: loading-bar .75s ease-in-out infinite;
+            /*left: -100%;*/
+            /*width: 100%;*/
+            /*animation: loading-bar .75s ease-in-out infinite;*/
+            transition: width ease-in-out .5s;
+            width: var(--blazor-load-percentage);
         }
 
         @keyframes loading-bar {
