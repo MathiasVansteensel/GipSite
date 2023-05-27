@@ -1,5 +1,5 @@
 using GipSite;
-using GipSite.ApexCharts;
+//using GipSite.ApexCharts;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;

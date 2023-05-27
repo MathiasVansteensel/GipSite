@@ -244,7 +244,43 @@
 											</div>
 										</div>
 									</div>
-									<button @onclick="MainChart.RenderChart">Render chart</button>
+							<button @onclick="MainChartAdd">Add</button>
+							<ApexChart TItem="DataPoint<DateTime, decimal>"
+									   Title="Energy Consumption"
+									   Height="350" @ref="mainChart"
+									   FormatYAxisLabel="@(y => $"{y:0.##}")"
+									   XAxisType="XAxisType.Datetime" 
+									   Options="mainChartOptions">
+
+								<ApexPointSeries TItem="DataPoint<DateTime, decimal>"
+												 Items="points"
+												 SeriesType="@SeriesType.Area"
+												 Name="Energy consumption"
+												 XValue="@(p => p.X)"
+												 YValue="@(p => (decimal)p.Y)"/>
+							</ApexChart>
+
+							@code
+							{
+								static ApexChartOptions<DataPoint<DateTime, decimal>> mainChartOptions = new ApexChartOptions<DataPoint<DateTime, decimal>>
+								{
+									Colors = new List<string>
+									{
+										"#528bff"
+									},
+									Theme = new Theme
+									{
+										Mode = Mode.Dark,
+										Palette = PaletteType.Palette1
+									},
+									Chart = new Chart
+									{
+										Background = "#00000000"
+									}
+								};
+							}
+
+									@*<button @onclick="MainChart.RenderChart">Render chart</button>
 									<button @onclick="Add">Add</button>
 								<div id="chart" style="min-height: 365px;">
 								@code 
@@ -257,7 +293,7 @@
 										i++;
 									}
 								}
-								</div>
+								</div>*@
 								</div>
 							</div>
 							<div class="col-xl-7">
